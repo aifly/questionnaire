@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no"/>
+    <title>文字特效</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Microsoft Yahei', 微软雅黑, Arial, 'Hiragino Sans GB', 宋体;
+            overflow: hidden;
+        }
+
+        div.text {
+            width: 80%;
+            margin: 100px auto;
+            line-height: 26px;
+            background: #00BBFF;
+            padding: 2%;
+        }
+        div.text.blur{
+            -webkit-filter:blur(5px);
+            filter:blur(5px);
+        }
+
+        .text span {
+            display: inline-block;
+            width: 16px;
+            transition-timing-function: cubic-bezier(0.78, 0.11, 0.07, 0.89) !important;
+        }
+
+        .btn {
+            width: 60px;
+            height: 30px;
+        }
+
+        .btn-group {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+<div class="text">
+    我可以在一个小时之内使亚特兰大全城烧起来，微信是中国互联网过去五年来的唯一一款世界级的创新产品。
+</div>
+<div class="btn-group">
+    <button class="btn support">顶</button>
+    <button class="btn opposition">踩</button>
+</div>
+
+
+<script>
+    (function (document) {
+        var supportBtn = document.querySelector ( '.support' ),
+                oppositionBtn = document.querySelector ( '.opposition' ),
+                text = document.querySelector ( '.text' ),
+                str = text.innerHTML,
+                viewWidth = document.documentElement.clientWidth,
+                viewHeight = document.documentElement.clientHeight;
+        text.innerHTML = transformText ( str );
+        supportBtn.onclick = function () {
+
+        };
+
+        typeof Array.from !== 'function' && ( Array.from = function (avg) {
+            if (avg.length === undefined) {
+                return;
+            }
+            ;
+            var result = [];
+            for ( var i = 0 ; i < avg.length ; i ++ ) {
+                result.push ( avg[i] );
+            }
+            return result;
+        });
+
+        oppositionBtn.onclick = function () {//踩
+            var aSpan = text.querySelectorAll ( 'span' );
+            aSpan = Array.from ( aSpan );
+            aSpan.forEach ( function (item) {
+                item.classList.add('blur');
+                item.style.transition = random ( 100, 400 ) + 'ms -webkit-transform';
+                item.style.transform = 'rotate(' + random ( 0, 360 ) + 'deg) scale(' + random ( .5, .8 ) + ')';
+            } );
+
+            setTimeout ( function () {
+                aSpan.forEach ( function (item, i) {
+                    item.style.transition = random ( 500, 800 ) + 'ms ' + random ( 200, 600 ) + 'ms';
+                    var scale = i % 2 === 0 ? - 1 : 1;
+                    item.style.transform = ' translate3d(' + (scale * viewWidth) + 'px,' + viewHeight*2 + 'px,0)';
+                } );
+
+            }, 500 )
+
+        };
+
+
+        function random(min, max) {
+            return min + (max - min) * Math.random ();
+        }
+
+        function transformText(str) {
+            var strArr = str.split ( '' ),
+                    html = '';
+            strArr.forEach ( function (item, i) {
+                item !== ' ' && (   html += '<span>' + item + '</span>');
+            } );
+            return '<span> </span>' + html;
+        }
+    }) ( document )
+</script>
+</body>
+</html>

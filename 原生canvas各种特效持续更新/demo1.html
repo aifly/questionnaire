@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>createjs</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            overflow: hidden;
+        }
+
+        img {
+            position: absolute;
+            left: 0;
+            top: 0;
+            z-index: -1;
+        }
+    </style>
+</head>
+<body>
+
+<img src="images/1.jpg" alt="" id="img1">
+<canvas id="canvas"></canvas>
+<script>
+
+    function loadImg(url) {
+        var canvas = document.getElementById ( 'canvas' );
+        if (typeof Promise === undefined) {//支持promise
+            alert('你的浏览器不支持ES6 Promise');
+            return;
+        }
+
+        return new Promise ( function (resolve, rejected) {
+            var img = new Image ();
+
+            img.onload = function() {
+                resolve ( this );
+            }
+            img.onerror = function () {
+
+                rejected ( this );
+            }
+            img.src = url;
+
+        } );
+    }
+
+    typeof Promise === "function" &&  Promise.all ( [loadImg ( "images/2.jpg" ), loadImg ( "images/1.jpg" )] ).then ( function (e) {
+        var img1= e[0];
+        canvas.width = img1.width;
+        canvas.height = img1.height;
+        var width = canvas.width,
+                height = canvas.height,
+                centerX = width >> 1,
+                centerY = height >> 1,
+                r = 200;
+
+        var context = canvas.getContext ( "2d" );
+
+        var imgWidth = img1.width,
+                imgHeight = img1.height,
+                imgX = 0,
+                imgY = 0;
+
+        context.drawImage ( img1, imgX, imgY, imgWidth, imgHeight );
+        context.globalCompositeOperation = "destination-out";
+        context.lineWidth = 1;
+
+        context.beginPath ();
+        context.moveTo ( centerX, centerY );
+        context.lineTo ( centerX + imgWidth / 2, centerY );
+        var defaultR = r = imgWidth < imgHeight ? imgWidth / 2 : imgHeight / 2;
+        var largeHarfWidth = imgWidth > imgHeight ? imgWidth / 2 : imgHeight / 2,
+                maxR = Math.sqrt ( Math.pow ( defaultR, 2 ) + Math.pow ( largeHarfWidth, 2 ) );
+
+        var ang = 0;
+        context.shadowBlur=170;
+        context.shadowColor='black';
+        var t = setInterval ( function () {
+            ang += 5;
+            context.moveTo(centerX,centerY);
+            if (ang >= 360) {
+                ang = 360;
+                r = r + 4;
+
+                context.arc ( centerX, centerY, r, 0, Math.PI / 180 * ang, false );///Math.cos(45/180*Math.PI)
+                if (r > maxR) {
+                    clearInterval ( t );
+                }
+            }
+            else {
+                console.log(r)
+                context.arc ( centerX, centerY, r, 0, Math.PI / 180 * ang, false );///Math.cos(45/180*Math.PI)
+            }
+            context.closePath ();
+            context.fill ();
+
+        }, 30 );
+
+
+    } );
+
+
+</script>
+</body>
+</html>

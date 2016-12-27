@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Html5Canvas探照灯效果</title>
+    <style>
+        *{margin:0;
+            padding:0;}
+    </style>
+</head>
+<body>
+    <canvas id="canvas"></canvas>
+    <script>
+        var canvas = document.getElementById('canvas' ),
+            context=  canvas.getContext('2d');
+
+        var img= new Image();
+        img.onload= function () {
+            canvas.width= img.width;
+            canvas.height=img.height;
+            var speedX = 4,
+                speedY = 9,
+                x = y = r =  150;
+           setInterval( function () {
+                x+=speedX;
+                y+=speedY;
+                if(x>canvas.width-r||x<r){
+                    speedX*=-1;
+                }
+                if(y>canvas.height-r||y<r){
+                    speedY*=-1;
+                }
+                context.clearRect(0,0,canvas.width,canvas.height);
+                context,fillStyle='#000';
+                context.save();
+                context.fillRect(0,0,canvas.width,canvas.height)
+                context.beginPath();
+                context.arc(x,y,r,0,Math.PI*2,false);
+                context.closePath();
+                context.clip();
+                context.drawImage(img,0,0);
+                context.restore();
+            },20);
+
+        }
+        img.src='images/girl.jpg';
+
+
+    </script>
+</body>
+</html>

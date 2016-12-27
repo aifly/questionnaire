@@ -1,0 +1,50 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>数学之美</title>
+    <style>
+        *{margin:0;padding:0;}
+        body{
+            overflow:hidden;
+        }
+        canvas{
+            position:absolute;
+            bottom:0;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="canvas" width="1800" height="500" ></canvas>
+
+    <script>
+        var canvas = document.getElementById("canvas");
+        canvas.width = document.documentElement.clientWidth;
+        var context = canvas.getContext("2d");
+        var width = canvas.width,
+            height = canvas.height;
+        var m = Math;
+        var scale = 50;
+        var ang = 0;
+        var deg = m.ceil(width / m.PI * 4);
+
+        setInterval(function () {
+            ang -= 5;
+            context.clearRect(0, 0, width, height);
+            context.beginPath();
+            
+            for (var i = 0; i < deg; i++) {
+                context.lineTo(m.PI * i / 180 * scale,1*m.sin(m.PI * (i - ang) / 180) * scale / 2 + 100);
+            }
+            context.lineTo(m.PI * i / 180 * scale, height);
+            context.lineTo(0, height);
+            context.closePath();
+            context.fillStyle = "#966";
+            context.fill();
+
+        }, 18);
+    </script>
+
+
+</body>
+</html>

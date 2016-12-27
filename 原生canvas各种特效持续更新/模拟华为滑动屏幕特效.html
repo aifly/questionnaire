@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no"/>
+    <title>模拟华为手机滑动特效</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;;
+        }
+
+        canvas {
+            position: absolute;
+        }
+
+        .canvas-box {
+            position: relative;
+            display: block;
+
+            background: url("images/xi.jpg") no-repeat center;
+            background-size: cover;
+            opacity: 0;
+        }
+
+        img {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+
+<img src="images/bg1.jpg" id="img" alt="" style="position: absolute;z-index: -1;opacity: 0;;">
+
+<div class="canvas-box">
+    <h1 style="position: absolute;text-align: center;z-index:100;width:100%;color: red;">向上滑动页面试试</h1>
+    <canvas id="canvas" width="320" height="568"></canvas>
+</div>
+<script>
+
+    +function (document) {
+
+        document.addEventListener('touchmove',function(e){e.preventDefault()})
+        var canvas = document.getElementById ( 'canvas' ),
+                context = canvas.getContext ( '2d' );
+
+        window.addEventListener ( 'resize', function () {
+            init ();
+        } );
+
+        init ();
+
+        function init() {
+            var img = document.getElementById('img');
+            var size = setSize ( img );
+            img.onload = function () {
+
+                var self = this;
+                var startTop = 119;
+                canvas.parentNode.style.opacity = 1;
+                context.drawImage ( self, 0, 0, size.width, size.height );
+                context.globalCompositeOperation = "destination-out";
+                context.shadowBlur = 280;
+                context.shadowColor = 'red';
+
+                var device = (/android|webos|iphone|ipad|ipod|blackberry|iemobile|opera mini/i.test ( navigator.userAgent.toLowerCase () ));
+
+
+                var startEvent = device ? "touchstart" : "mousedown",
+                        moveEvent = device ? "touchmove" : 'mousemove',
+                        endEvent = device ? "touchend" : 'mouseup';
+
+                bind ( canvas, startEvent, function (e) {
+                    e.preventDefault();
+                    this.isMove = true;
+                    var e = e.changedTouches ? e.changedTouches[0] : e;
+                    this.startY = e.pageY;
+                    this.last = e.pageY;
+                    this.iNow = 0;
+                } );
+
+                bind ( canvas, moveEvent, function (e) {
+                    e.preventDefault();
+                    if (this.isMove) {
+                        var e = e.changedTouches ? e.changedTouches[0] : e;
+                        var disY = e.pageY - this.startY;
+                        var endTop = startTop - disY;
+                        if (this.last >= e.pageY) {
+                            context.save ();
+                            context.rotate ( 50 * Math.PI / 180 );
+                            context.translate ( 0, - endTop );
+                            this.iNow =endTop;
+                            context.fillRect ( 0, size.height, size.width * 2, size.height * 1.5 );
+                            context.restore ();
+                        }
+
+                        this.last = e.pageY;
+
+
+                    }
+                } );
+
+                bind ( canvas, endEvent, function (e) {
+                    this.isMove = false;
+                    var e = e.changedTouches ? e.changedTouches[0] : e,
+                            endY = e.pageY;
+
+                    if(Math.abs(endY - this.startY) >  size.height/2.6){
+
+                        var t = setInterval(function(){
+                            this.iNow += 30;
+                            context.save ();
+                            context.rotate ( 50 * Math.PI / 180 );
+                            context.translate ( 0, - this.iNow );
+                            context.fillRect ( 0, size.height, size.width * 2, size.height * 1.5 );
+                            context.restore ();
+
+                            if(this.iNow > size.height+size.width){
+                                clearInterval(t);
+                               //canvas.parentNode.removeChild(canvas);
+                                canvas.style.display = 'none';
+                            }
+
+                        }.bind(this),20);
+                    }
+                    else{
+                      //  context.clearRect(0,0,size.width,size.height);
+                        context.globalCompositeOperation = "source-over";
+                        context.drawImage ( self, 0, 0, size.width, size.height );
+                        context.globalCompositeOperation = "destination-out";
+                    }
+                } );
+            };
+
+        }
+
+        function bind(obj, evnetName, fn) {
+            obj.addEventListener ( evnetName, function (e) {
+                fn && fn ( e, obj );
+            } );
+        }
+
+        function setSize(img) {
+            var canvasWidth = document.documentElement.clientWidth,
+                    canvasHeight = document.documentElement.clientHeight;
+            if (document.documentElement.clientWidth > 640) {
+                canvasWidth = 320;
+                canvasHeight = 568;
+            }
+
+            canvas.parentNode.style.width = canvasWidth + 'px';
+            canvas.parentNode.style.height = canvasHeight + 'px';
+            context.clearRect ( 0, 0, canvasWidth, canvasHeight );
+            context.drawImage ( img, 0, 0, canvasWidth, canvasHeight );
+            canvas.width = canvasWidth;
+            canvas.height = canvasHeight;
+
+            return {
+                width: canvasWidth,
+                height: canvasHeight
+            }
+        }
+    } ( document );
+
+</script>
+</body>
+</html>

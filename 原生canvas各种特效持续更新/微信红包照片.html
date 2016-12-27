@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>微信红包照片</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .img-container {
+            width: 1200px;
+            height: 800px;;
+
+            margin: 0 auto;
+            position: relative;
+            box-shadow: 0 0 100px rgba(0, 0, 0, 1);
+
+        }
+
+        canvas {
+            position: absolute;
+            left: 0;
+            top: 0;
+            z-index: 1;
+
+        }
+
+        img {
+            width: 100%;
+            height: auto;
+            -webkit-filter: blur(20px);
+            filter: blur(20px);
+        }
+
+        .btn {
+            position: absolute;
+            left: 10%;
+            top: 30%;
+            width: 50px;
+            height: 25px;;
+            z-index:10;
+        }
+
+        .btn:nth-of-type(2) {
+            top: 35%;
+        }
+    </style>
+</head>
+<body>
+<div class="img-container">
+    <img src="images/road.jpg" alt="">
+    <canvas id="canvas"></canvas>
+</div>
+
+<input type="button" value="复位" class="btn-reset btn">
+<input type="button" value="运动" class="btn-move btn">
+
+<script>
+    var canvas = document.getElementById ( 'canvas' ),
+            context = canvas.getContext ( '2d' );
+    var img = new Image ();
+    img.onload = function () {
+        var imgContainer = document.querySelector ( '.img-container' );
+
+        initCanvas ( imgContainer );
+
+        var clipRegion = { //创建剪辑区域。
+            x: - 1,
+            y: - 1,
+            r: 50,
+            timer:null
+        };
+
+        //随机生成剪辑区域的位置。
+        clipRegion.x = Math.random () * (canvas.width - clipRegion.r * 2) + clipRegion.r;
+
+        clipRegion.y = Math.random () * (canvas.height - clipRegion.r * 2) + clipRegion.r;
+
+        draw ( this, clipRegion );//初始化
+
+
+        var resetBtn = document.querySelector ( '.btn-reset' ),
+            moveBtn = document.querySelector ( '.btn-move' );
+
+        resetBtn.onclick = function () {
+
+            clearInterval ( clipRegion.timer );
+            clipRegion.started = false;
+
+            clipRegion.r = 50;
+
+            clipRegion.x = Math.random () * (canvas.width - clipRegion.r * 2) + clipRegion.r;
+
+            clipRegion.y = Math.random () * (canvas.height - clipRegion.r * 2) + clipRegion.r;
+
+            draw ( this, clipRegion );
+
+        }.bind ( this );
+
+        moveBtn.onclick = function () {
+
+           !clipRegion.started && (clipRegion.timer = setInterval ( function () {
+               clipRegion.started = true;
+               clipRegion.r += 10;
+
+               if(clipRegion.r > (clipRegion.x + clipRegion.y)*2){
+                   clearInterval ( clipRegion.timer );
+                   clipRegion.started = false;
+               };
+
+               draw ( this, clipRegion );
+
+           }.bind ( this ), 20 ));
+        }.bind ( this );
+
+    };
+    img.src = 'images/road.jpg';
+
+    function initCanvas(imgContainer) {
+        canvas.width = imgContainer.clientWidth;
+        canvas.height = imgContainer.clientHeight;
+    }
+
+    function draw(img, clipRegion) {
+        context.clearRect ( 0, 0, canvas.width, canvas.height );
+        context.save ();
+        context.beginPath ();
+        context.arc ( clipRegion.x, clipRegion.y, clipRegion.r, 0, Math.PI * 2, false );
+        context.closePath ();
+        context.clip ();
+        context.drawImage ( img, 0, 0 );
+        context.restore ();
+    }
+
+</script>
+</body>
+</html>
