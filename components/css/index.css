@@ -32,5 +32,44 @@ body {
   top: 0;
   width: 100%;
   height: 100%; }
+  .index-main-ui .i-2017 {
+    width: 8rem;
+    position: absolute;
+    left: 1rem;
+    z-index: 2;
+    -webkit-transition: -webkit-transform 0.6s;
+    transition: transform 0.6s;
+    -webkit-transform: scale(0);
+    transform: scale(0);
+    -webkit-transition-timing-function: cubic-bezier(0.49, 1.52, 0.38, 0.84);
+    transition-timing-function: cubic-bezier(0.49, 1.52, 0.38, 0.84);
+    -webkit-transform-origin: center bottom;
+    transform-origin: center bottom; }
+    .index-main-ui .i-2017.active {
+      -webkit-transform: scale(1);
+      transform: scale(1); }
+  .index-main-ui .i-rug {
+    width: 11rem;
+    top: 2.5rem;
+    position: absolute;
+    left: 0;
+    z-index: 1;
+    opacity: 0;
+    -webkit-transition: 1.5s 0.5s;
+    transition: 1.5s 0.5s; }
+    .index-main-ui .i-rug.active {
+      opacity: 1; }
+  .index-main-ui .i-text {
+    opacity: 0;
+    position: absolute;
+    left: 50%;
+    -webkit-transform: translate3d(-50%, -50%, 0);
+    transform: translate3d(-50%, -50%, 0);
+    color: #fff;
+    top: 60vh;
+    -webkit-transition: 0.5s;
+    transition: 0.5s; }
+    .index-main-ui .i-text.active {
+      opacity: 1; }
 
 /*# sourceMappingURL=index.css.map */

@@ -1,0 +1,41 @@
+@import "../../assets/css/base.scss";
+
+.sb-main-ui{
+	width:100%;
+	height:100%;
+	@include pos(a);
+	left:0;
+	top:0;
+	.sb-ico{
+		width:2rem;
+		@include pos(a);
+	}
+	.sb-hp{
+		
+		left:3.4rem;
+		top:.5rem;
+	}
+	.sb-tp{
+		
+		right:0;
+		top:5rem;
+	}
+	.sb-vr{
+		
+		left:2rem;
+		top:5rem;
+	}
+	.sb-yp{
+		top:8.5rem;
+		left:3.5rem;
+	}
+	.sb-sp{
+		
+		top:12.5rem;
+		left: 6rem;
+	}
+	.sb-wz{
+		right: 0;
+		top:10rem;
+	}
+}

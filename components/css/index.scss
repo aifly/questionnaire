@@ -4,6 +4,45 @@
 	left:0;
 	top:0;
 	width:100%;
-	height:100%;	
+	height:100%;
+
+	.i-2017{
+		width:8rem;
+		@include pos(a);
+		left:1rem;
+		z-index:2;
+		@include transition_transform(.6s);
+		@include transform(scale(0));
+		@include transitionTimingFunction(cubic-bezier(0.49, 1.52, 0.38, 0.84));
+		@include transformOrigin(center bottom);
+		&.active{
+			@include transform(scale(1));
+		}
+	}
+	.i-rug{
+		width:11rem;
+		top:2.5rem;
+		@include pos(a);
+		left:0;
+		z-index:1;
+		opacity:0;
+		@include transition(1.5s .5s);
+		&.active{
+			opacity:1;
+		}
+	}
+	.i-text{
+		opacity:0;
+		@include pos(a);
+		left:50%;
+		@include transform(translate3d(-50%,-50%,0));
+		color:#fff;
+		top:60vh;
+		@include transition(.5s);
+		&.active{
+			opacity:1;
+		}
+	}
+
 }
 	

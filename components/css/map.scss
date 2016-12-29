@@ -1,0 +1,71 @@
+@import "../../assets/css/base.scss";
+.map-main-ui{
+	@include pos(a);
+	left:0;
+	top:0;
+	width:100%;
+	height:100%;
+	div{
+		@include pos(a);
+	}
+
+	.map-cloud,.map-map{
+		@include pos(a);
+		left:0;
+		top:0;
+		width:100%;
+		height:100%;
+		z-index: 20;
+	}
+	.map-map{
+		z-index: 19;
+		  text-align: center;
+		img{
+			&.active{
+				height: 100%;
+				width:auto;
+			}
+		}
+	}
+	.map-tk{
+		width:2rem;
+		left: 4rem;
+		top:.2rem;
+	}
+	.map-yz{
+			top:2rem;
+			left:2rem;
+	}
+	.map-z{
+		width:2rem;
+		z-index: 102;
+	}
+	.map-oz{
+			right: 1.5rem;
+			top:.7rem;
+	}
+	.map-fz{
+		right:.8rem;
+		top:4rem;
+	}
+	.map-dyz{
+		left:4rem;
+		top:5rem;
+	}
+	.map-nmz{
+		top:6.5rem;
+		left:1.4rem;
+	}
+	.map-bmz{
+			top:8.5rem;
+			left:5.6rem;
+	}
+	.map-njz{
+		top:9.5rem;
+		left: 1.8rem;
+	}
+	.map-hd{
+		 bottom:1rem;
+		 left: 5rem;
+	}
+}

@@ -74,6 +74,18 @@
 
 	var _componentsIndexJsx2 = _interopRequireDefault(_componentsIndexJsx);
 
+	var _componentsMapJsx = __webpack_require__(193);
+
+	var _componentsMapJsx2 = _interopRequireDefault(_componentsMapJsx);
+
+	var _componentsSeewhatJsx = __webpack_require__(196);
+
+	var _componentsSeewhatJsx2 = _interopRequireDefault(_componentsSeewhatJsx);
+
+	var _componentsSeebyJsx = __webpack_require__(203);
+
+	var _componentsSeebyJsx2 = _interopRequireDefault(_componentsSeebyJsx);
+
 	var _libObserable = __webpack_require__(192);
 
 	var _libObserable2 = _interopRequireDefault(_libObserable);
@@ -88,12 +100,22 @@
 	        _classCallCheck(this, App);
 
 	        _get(Object.getPrototypeOf(App.prototype), 'constructor', this).apply(this, option);
-	        this.state = {};
+	        this.state = {
+	            iNow: 0
+	        };
+	        this.height = document.documentElement.clientHeight;
 	    }
 
 	    _createClass(App, [{
 	        key: 'componentWillMount',
-	        value: function componentWillMount() {}
+	        value: function componentWillMount() {
+	            document.getElementsByTagName('html')[0].style.fontSize = document.documentElement.clientWidth / 10 + 'px';
+	            if (!Array.from) {
+	                Array.from = function (c) {
+	                    return Array.prototype.slice.call(c);
+	                };
+	            }
+	        }
 	    }, {
 	        key: 'render',
 	        value: function render() {
@@ -103,9 +125,63 @@
 	            };
 	            return _react2['default'].createElement(
 	                'div',
-	                null,
-	                _react2['default'].createElement(_componentsIndexJsx2['default'], data)
+	                { className: 'main', ref: 'main', onTouchTap: this.choosePerson.bind(this) },
+	                _react2['default'].createElement(
+	                    'div',
+	                    { className: 'index-boy person' },
+	                    _react2['default'].createElement('img', { src: './assets/images/boy.png', 'data-src': './assets/images/boy1.png', alt: '' })
+	                ),
+	                _react2['default'].createElement(
+	                    'div',
+	                    { className: 'index-girl person' },
+	                    _react2['default'].createElement('img', { src: './assets/images/girl.png', 'data-src': './assets/images/girl1.png', alt: '' })
+	                ),
+	                _react2['default'].createElement(
+	                    'ul',
+	                    { className: 'index-main-C', ref: 'index-main-C', style: { WebkitTransform: 'translate3d(0,' + -this.state.iNow * this.height + 'px,0)' } },
+	                    _react2['default'].createElement(
+	                        'li',
+	                        null,
+	                        _react2['default'].createElement(_componentsIndexJsx2['default'], data)
+	                    ),
+	                    _react2['default'].createElement(
+	                        'li',
+	                        null,
+	                        _react2['default'].createElement(_componentsMapJsx2['default'], data)
+	                    ),
+	                    _react2['default'].createElement(
+	                        'li',
+	                        null,
+	                        _react2['default'].createElement(_componentsSeewhatJsx2['default'], data)
+	                    ),
+	                    _react2['default'].createElement(
+	                        'li',
+	                        null,
+	                        _react2['default'].createElement(_componentsSeebyJsx2['default'], data)
+	                    )
+	                )
 	            );
+	        }
+	    }, {
+	        key: 'componentDidMount',
+	        value: function componentDidMount() {
+	            var height = this.height;
+	            this.refs['main'].style.height = height + 'px';
+	            Array.from(this.refs['index-main-C'].children).map(function (item) {
+	                item.style.height = height + 'px';
+	            });
+	            this.refs['index-main-C'].style.height = this.refs['index-main-C'].children.length * height + 'px';
+	        }
+	    }, {
+	        key: 'choosePerson',
+	        value: function choosePerson(e) {
+
+	            if (e.target.nodeName === "IMG" && e.target.parentNode.classList.contains('person')) {
+	                e.target.src = e.target.getAttribute('data-src');
+	                this.setState({
+	                    iNow: this.state.iNow + 1
+	                });
+	            }
 	        }
 	    }]);
 
@@ -149,7 +225,7 @@
 
 
 	// module
-	exports.push([module.id, "html, body, div, p, ul, li, ol, dl, dt, dd, header, footer, video, h1, h2, h3, h4, canvas, section, figure {\r\n  padding: 0;\r\n  margin: 0; }\r\n\r\na {\r\n  text-decoration: none; }\r\n\r\nli {\r\n  list-style: none; }\r\n\r\nhtml, body {\r\n  height: 100%; }\r\n\r\nimg {\r\n  border: none;\r\n  vertical-align: top;\r\n  width: 100%;\r\n  height: auto; }\r\n\r\ninput, textarea {\r\n  outline: none; }\r\n\r\nbody {\r\n  font-family: 'Microsoft Yahei', Tahoma, Helvetica, Arial, sans-serif;\r\n  font-size: 14px;\r\n  height: 100%;\r\n  overflow: hidden; }\r\n\r\n/*# sourceMappingURL=index.css.map */\r\n", ""]);
+	exports.push([module.id, "html, body, div, p, ul, li, ol, dl, dt, dd, header, footer, video, h1, h2, h3, h4, canvas, section, figure {\r\n  padding: 0;\r\n  margin: 0; }\r\n\r\na {\r\n  text-decoration: none; }\r\n\r\nli {\r\n  list-style: none; }\r\n\r\nhtml, body {\r\n  height: 100%; }\r\n\r\nimg {\r\n  border: none;\r\n  vertical-align: top;\r\n  width: 100%;\r\n  height: auto; }\r\n\r\ninput, textarea {\r\n  outline: none; }\r\n\r\nbody {\r\n  font-family: 'Microsoft Yahei', Tahoma, Helvetica, Arial, sans-serif;\r\n  font-size: 14px;\r\n  height: 100%;\r\n  overflow: hidden; }\r\n\r\n.person {\r\n  position: fixed;\r\n  z-index: 10;\r\n  bottom: 10vh;\r\n  width: 4rem;\r\n  left: .5rem;\r\n  -webkit-transition: -webkit-transform 1s;\r\n  transition: transform 1s;\r\n  -webkit-transition-timing-function: cubic-bezier(0.49, 1.52, 0.38, 0.84);\r\n  transition-timing-function: cubic-bezier(0.49, 1.52, 0.38, 0.84);\r\n  -webkit-transform: translate3d(-5rem, 0, 0);\r\n  transform: translate3d(-5rem, 0, 0); }\r\n  .person.active {\r\n    -webkit-transform: translate3d(0, 0, 0);\r\n    transform: translate3d(0, 0, 0); }\r\n\r\n.index-girl {\r\n  right: .5rem;\r\n  left: auto;\r\n  -webkit-transition: -webkit-transform 1s 0.2s;\r\n  transition: transform 1s 0.2s;\r\n  -webkit-transform: translate3d(5rem, 0, 0);\r\n  transform: translate3d(5rem, 0, 0);\r\n  -webkit-transition-timing-function: cubic-bezier(0.49, 1.52, 0.38, 0.84);\r\n  transition-timing-function: cubic-bezier(0.49, 1.52, 0.38, 0.84); }\r\n\r\n.index-main-C {\r\n  width: 10rem;\r\n  position: absolute;\r\n  left: 0;\r\n  top: 0;\r\n  -webkit-transition: -webkit-transform 1.5s;\r\n  transition: transform 1.5s; }\r\n  .index-main-C li {\r\n    position: relative;\r\n    z-index: 100; }\r\n\r\n/*# sourceMappingURL=index.css.map */\r\n", ""]);
 
 	// exports
 
@@ -22325,11 +22401,46 @@
 					background: 'url(./assets/images/bg1.jpg) no-repeat center',
 					backgroundSize: 'cover'
 				};
-				return _react2['default'].createElement('div', { className: 'index-main-ui', style: style });
+				return _react2['default'].createElement(
+					'div',
+					{ className: 'index-main-ui', style: style },
+					_react2['default'].createElement(
+						'div',
+						{ className: 'i-2017', ref: 'i-2017' },
+						_react2['default'].createElement('img', { src: './assets/images/2017.png' })
+					),
+					_react2['default'].createElement(
+						'div',
+						{ className: 'i-rug', ref: 'i-rug' },
+						_react2['default'].createElement('img', { src: './assets/images/motan.png', alt: '' })
+					),
+					_react2['default'].createElement(
+						'div',
+						{ className: 'i-text', ref: 'i-text' },
+						'请选择性别'
+					)
+				);
 			}
 		}, {
 			key: 'componentDidMount',
-			value: function componentDidMount() {}
+			value: function componentDidMount() {
+				var _this = this;
+
+				setTimeout(function () {
+					_this.refs['i-rug'].classList.add('active');
+					_this.refs['i-rug'].addEventListener('webkitTransitionEnd', function () {
+
+						_this.refs['i-2017'].classList.add('active');
+
+						_this.refs['i-2017'].addEventListener('webkitTransitionEnd', function () {
+							var person = document.querySelectorAll('.person');
+							person[0].classList.add('active');
+							person[1].classList.add('active');
+							_this.refs['i-text'].classList.add('active');
+						});
+					});
+				}, 10);
+			}
 		}]);
 
 		return IndexApp;
@@ -22428,7 +22539,7 @@
 
 
 	// module
-	exports.push([module.id, "html, body, div, p, ul, li, ol, dl, dt, dd, header, footer, video, h1, h2, h3, h4, canvas, section, figure {\r\n  padding: 0;\r\n  margin: 0; }\r\n\r\na {\r\n  text-decoration: none; }\r\n\r\nli {\r\n  list-style: none; }\r\n\r\nhtml, body {\r\n  height: 100%; }\r\n\r\nimg {\r\n  border: none;\r\n  vertical-align: top;\r\n  width: 100%;\r\n  height: auto; }\r\n\r\ninput, textarea {\r\n  outline: none; }\r\n\r\nbody {\r\n  font-family: 'Microsoft Yahei', Tahoma, Helvetica, Arial, sans-serif;\r\n  font-size: 14px;\r\n  height: 100%;\r\n  overflow: hidden; }\r\n\r\n.index-main-ui {\r\n  position: absolute;\r\n  left: 0;\r\n  top: 0;\r\n  width: 100%;\r\n  height: 100%; }\r\n\r\n/*# sourceMappingURL=index.css.map */\r\n", ""]);
+	exports.push([module.id, "html, body, div, p, ul, li, ol, dl, dt, dd, header, footer, video, h1, h2, h3, h4, canvas, section, figure {\r\n  padding: 0;\r\n  margin: 0; }\r\n\r\na {\r\n  text-decoration: none; }\r\n\r\nli {\r\n  list-style: none; }\r\n\r\nhtml, body {\r\n  height: 100%; }\r\n\r\nimg {\r\n  border: none;\r\n  vertical-align: top;\r\n  width: 100%;\r\n  height: auto; }\r\n\r\ninput, textarea {\r\n  outline: none; }\r\n\r\nbody {\r\n  font-family: 'Microsoft Yahei', Tahoma, Helvetica, Arial, sans-serif;\r\n  font-size: 14px;\r\n  height: 100%;\r\n  overflow: hidden; }\r\n\r\n.index-main-ui {\r\n  position: absolute;\r\n  left: 0;\r\n  top: 0;\r\n  width: 100%;\r\n  height: 100%; }\r\n  .index-main-ui .i-2017 {\r\n    width: 8rem;\r\n    position: absolute;\r\n    left: 1rem;\r\n    z-index: 2;\r\n    -webkit-transition: -webkit-transform 0.6s;\r\n    transition: transform 0.6s;\r\n    -webkit-transform: scale(0);\r\n    transform: scale(0);\r\n    -webkit-transition-timing-function: cubic-bezier(0.49, 1.52, 0.38, 0.84);\r\n    transition-timing-function: cubic-bezier(0.49, 1.52, 0.38, 0.84);\r\n    -webkit-transform-origin: center bottom;\r\n    transform-origin: center bottom; }\r\n    .index-main-ui .i-2017.active {\r\n      -webkit-transform: scale(1);\r\n      transform: scale(1); }\r\n  .index-main-ui .i-rug {\r\n    width: 11rem;\r\n    top: 2.5rem;\r\n    position: absolute;\r\n    left: 0;\r\n    z-index: 1;\r\n    opacity: 0;\r\n    -webkit-transition: 1.5s 0.5s;\r\n    transition: 1.5s 0.5s; }\r\n    .index-main-ui .i-rug.active {\r\n      opacity: 1; }\r\n  .index-main-ui .i-text {\r\n    opacity: 0;\r\n    position: absolute;\r\n    left: 50%;\r\n    -webkit-transform: translate3d(-50%, -50%, 0);\r\n    transform: translate3d(-50%, -50%, 0);\r\n    color: #fff;\r\n    top: 60vh;\r\n    -webkit-transition: 0.5s;\r\n    transition: 0.5s; }\r\n    .index-main-ui .i-text.active {\r\n      opacity: 1; }\r\n\r\n/*# sourceMappingURL=index.css.map */\r\n", ""]);
 
 	// exports
 
@@ -22495,6 +22606,636 @@
 
 	exports["default"] = Obserable;
 	module.exports = exports["default"];
+
+/***/ },
+/* 193 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, '__esModule', {
+		value: true
+	});
+
+	var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+
+	var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; desc = parent = undefined; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var _react = __webpack_require__(5);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _publicJsx = __webpack_require__(189);
+
+	__webpack_require__(194);
+
+	var MapApp = (function (_Component) {
+		_inherits(MapApp, _Component);
+
+		function MapApp(props) {
+			_classCallCheck(this, MapApp);
+
+			_get(Object.getPrototypeOf(MapApp.prototype), 'constructor', this).call(this, props);
+
+			this.state = {};
+			this.viewWidth = document.documentElement.clientWidth;
+			this.viewHeight = document.documentElement.clientHeight;
+		}
+
+		_createClass(MapApp, [{
+			key: 'render',
+			value: function render() {
+				var style = {
+					background: 'url(./assets/images/bg2.png) no-repeat center',
+					backgroundSize: 'cover'
+				};
+				return _react2['default'].createElement(
+					'div',
+					{ className: 'map-main-ui', style: style },
+					_react2['default'].createElement(
+						'div',
+						{ className: 'map-cloud' },
+						_react2['default'].createElement('img', { src: './assets/images/cloud.png' })
+					),
+					_react2['default'].createElement(
+						'div',
+						{ className: 'map-map' },
+						_react2['default'].createElement('img', { className: this.viewWidth / this.height > 320 / 568 ? '' : 'active', src: './assets/images/map.png' })
+					),
+					_react2['default'].createElement(
+						'div',
+						{ className: 'map-tk' },
+						_react2['default'].createElement('img', { src: './assets/images/tk.png' })
+					),
+					_react2['default'].createElement(
+						'div',
+						{ className: 'map-yz map-z' },
+						_react2['default'].createElement('img', { src: './assets/images/yz.png' })
+					),
+					_react2['default'].createElement(
+						'div',
+						{ className: 'map-oz  map-z' },
+						_react2['default'].createElement('img', { src: './assets/images/oz.png' })
+					),
+					_react2['default'].createElement(
+						'div',
+						{ className: ' map-z map-nmz' },
+						_react2['default'].createElement('img', { src: './assets/images/nmz.png' })
+					),
+					_react2['default'].createElement(
+						'div',
+						{ className: ' map-z map-fz' },
+						_react2['default'].createElement('img', { src: './assets/images/fz.png' })
+					),
+					_react2['default'].createElement(
+						'div',
+						{ className: ' map-z map-dyz' },
+						_react2['default'].createElement('img', { src: './assets/images/dyz.png' })
+					),
+					_react2['default'].createElement(
+						'div',
+						{ className: ' map-z map-bmz' },
+						_react2['default'].createElement('img', { src: './assets/images/bmz.png' })
+					),
+					_react2['default'].createElement(
+						'div',
+						{ className: ' map-z map-njz' },
+						_react2['default'].createElement('img', { src: './assets/images/njz.png' })
+					),
+					_react2['default'].createElement(
+						'div',
+						{ className: ' map-z map-hd' },
+						_react2['default'].createElement('img', { src: './assets/images/hd.png' })
+					)
+				);
+			}
+		}, {
+			key: 'componentDidMount',
+			value: function componentDidMount() {}
+		}]);
+
+		return MapApp;
+	})(_react.Component);
+
+	exports['default'] = (0, _publicJsx.FlyPublicComponent)(MapApp);
+	module.exports = exports['default'];
+
+/***/ },
+/* 194 */
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+
+	// load the styles
+	var content = __webpack_require__(195);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(4)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../../node_modules/.0.23.1@css-loader/index.js!./map.css", function() {
+				var newContent = require("!!./../../node_modules/.0.23.1@css-loader/index.js!./map.css");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+/* 195 */
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(3)();
+	// imports
+
+
+	// module
+	exports.push([module.id, "html, body, div, p, ul, li, ol, dl, dt, dd, header, footer, video, h1, h2, h3, h4, canvas, section, figure {\r\n  padding: 0;\r\n  margin: 0; }\r\n\r\na {\r\n  text-decoration: none; }\r\n\r\nli {\r\n  list-style: none; }\r\n\r\nhtml, body {\r\n  height: 100%; }\r\n\r\nimg {\r\n  border: none;\r\n  vertical-align: top;\r\n  width: 100%;\r\n  height: auto; }\r\n\r\ninput, textarea {\r\n  outline: none; }\r\n\r\nbody {\r\n  font-family: 'Microsoft Yahei', Tahoma, Helvetica, Arial, sans-serif;\r\n  font-size: 14px;\r\n  height: 100%;\r\n  overflow: hidden; }\r\n\r\n.map-main-ui {\r\n  position: absolute;\r\n  left: 0;\r\n  top: 0;\r\n  width: 100%;\r\n  height: 100%; }\r\n  .map-main-ui div {\r\n    position: absolute; }\r\n  .map-main-ui .map-cloud, .map-main-ui .map-map {\r\n    position: absolute;\r\n    left: 0;\r\n    top: 0;\r\n    width: 100%;\r\n    height: 100%;\r\n    z-index: 20; }\r\n  .map-main-ui .map-map {\r\n    z-index: 19;\r\n    text-align: center; }\r\n    .map-main-ui .map-map img.active {\r\n      height: 100%;\r\n      width: auto; }\r\n  .map-main-ui .map-tk {\r\n    width: 2rem;\r\n    left: 4rem;\r\n    top: .2rem; }\r\n  .map-main-ui .map-yz {\r\n    top: 2rem;\r\n    left: 2rem; }\r\n  .map-main-ui .map-z {\r\n    width: 2rem;\r\n    z-index: 102; }\r\n  .map-main-ui .map-oz {\r\n    right: 1.5rem;\r\n    top: .7rem; }\r\n  .map-main-ui .map-fz {\r\n    right: .8rem;\r\n    top: 4rem; }\r\n  .map-main-ui .map-dyz {\r\n    left: 4rem;\r\n    top: 5rem; }\r\n  .map-main-ui .map-nmz {\r\n    top: 6.5rem;\r\n    left: 1.4rem; }\r\n  .map-main-ui .map-bmz {\r\n    top: 8.5rem;\r\n    left: 5.6rem; }\r\n  .map-main-ui .map-njz {\r\n    top: 9.5rem;\r\n    left: 1.8rem; }\r\n  .map-main-ui .map-hd {\r\n    bottom: 1rem;\r\n    left: 5rem; }\r\n\r\n/*# sourceMappingURL=map.css.map */\r\n", ""]);
+
+	// exports
+
+
+/***/ },
+/* 196 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, '__esModule', {
+		value: true
+	});
+
+	var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+
+	var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; desc = parent = undefined; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var _react = __webpack_require__(5);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _publicJsx = __webpack_require__(189);
+
+	var _windowJsx = __webpack_require__(200);
+
+	var _windowJsx2 = _interopRequireDefault(_windowJsx);
+
+	__webpack_require__(197);
+
+	var SeeWhatApp = (function (_Component) {
+		_inherits(SeeWhatApp, _Component);
+
+		function SeeWhatApp(props) {
+			_classCallCheck(this, SeeWhatApp);
+
+			_get(Object.getPrototypeOf(SeeWhatApp.prototype), 'constructor', this).call(this, props);
+
+			this.state = {};
+			this.viewWidth = document.documentElement.clientWidth;
+			this.viewHeight = document.documentElement.clientHeight;
+		}
+
+		_createClass(SeeWhatApp, [{
+			key: 'render',
+			value: function render() {
+				var style = {
+					background: 'url(./assets/images/bg3.png) no-repeat center center',
+					backgroundSize: 'cover'
+				};
+				var icoStyle = {
+					background: 'url(./assets/images/pos.png) no-repeat center',
+					backgroundSize: 'contain'
+				};
+				var tag1 = _react2['default'].createElement(
+					'div',
+					{ className: 'w-tag' },
+					_react2['default'].createElement(
+						'div',
+						{ className: 'w-ico', style: icoStyle },
+						'A'
+					),
+					_react2['default'].createElement(
+						'div',
+						{ className: 'w-text' },
+						'时政会议'
+					)
+				);
+
+				var tag2 = _react2['default'].createElement(
+					'div',
+					{ className: 'w-tag' },
+					_react2['default'].createElement(
+						'div',
+						{ className: 'w-ico', style: icoStyle },
+						'B'
+					),
+					_react2['default'].createElement(
+						'div',
+						{ className: 'w-text' },
+						'突发事件'
+					)
+				);
+
+				var tag3 = _react2['default'].createElement(
+					'div',
+					{ className: 'w-tag' },
+					_react2['default'].createElement(
+						'div',
+						{ className: 'w-ico', style: icoStyle },
+						'C'
+					),
+					_react2['default'].createElement(
+						'div',
+						{ className: 'w-text' },
+						'人文活动'
+					)
+				);
+				var tag4 = _react2['default'].createElement(
+					'div',
+					{ className: 'w-tag' },
+					_react2['default'].createElement(
+						'div',
+						{ className: 'w-ico', style: icoStyle },
+						'D'
+					),
+					_react2['default'].createElement(
+						'div',
+						{ className: 'w-text' },
+						'科技探秘'
+					)
+				);
+				var tag5 = _react2['default'].createElement(
+					'div',
+					{ className: 'w-tag' },
+					_react2['default'].createElement(
+						'div',
+						{ className: 'w-ico', style: icoStyle },
+						'E'
+					),
+					_react2['default'].createElement(
+						'div',
+						{ className: 'w-text' },
+						'自然风光'
+					)
+				);
+
+				var props1 = {
+					tag: tag1,
+					img: './assets/images/sz.png',
+					className: 'window1'
+				};
+				var props2 = {
+					tag: tag2,
+					img: './assets/images/sj.png',
+					className: 'window2'
+				};
+				var props3 = {
+					tag: tag3,
+					img: './assets/images/rw.png',
+					className: 'window3'
+				};
+				var props4 = {
+					tag: tag4,
+					img: './assets/images/kj.png',
+					className: 'window4'
+				};
+				var props5 = {
+					tag: tag5,
+					img: './assets/images/zr.png',
+					className: 'window5'
+				};
+
+				return _react2['default'].createElement(
+					'div',
+					{ className: 'sw-main-ui', style: style },
+					_react2['default'].createElement(_windowJsx2['default'], props1),
+					_react2['default'].createElement(_windowJsx2['default'], props2),
+					_react2['default'].createElement(_windowJsx2['default'], props3),
+					_react2['default'].createElement(_windowJsx2['default'], props4),
+					_react2['default'].createElement(_windowJsx2['default'], props5)
+				);
+			}
+		}, {
+			key: 'componentDidMount',
+			value: function componentDidMount() {}
+		}]);
+
+		return SeeWhatApp;
+	})(_react.Component);
+
+	exports['default'] = (0, _publicJsx.FlyPublicComponent)(SeeWhatApp);
+	module.exports = exports['default'];
+
+/***/ },
+/* 197 */
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+
+	// load the styles
+	var content = __webpack_require__(198);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(4)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../../node_modules/.0.23.1@css-loader/index.js!./seewhat.css", function() {
+				var newContent = require("!!./../../node_modules/.0.23.1@css-loader/index.js!./seewhat.css");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+/* 198 */
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(3)();
+	// imports
+
+
+	// module
+	exports.push([module.id, "html, body, div, p, ul, li, ol, dl, dt, dd, header, footer, video, h1, h2, h3, h4, canvas, section, figure {\r\n  padding: 0;\r\n  margin: 0; }\r\n\r\na {\r\n  text-decoration: none; }\r\n\r\nli {\r\n  list-style: none; }\r\n\r\nhtml, body {\r\n  height: 100%; }\r\n\r\nimg {\r\n  border: none;\r\n  vertical-align: top;\r\n  width: 100%;\r\n  height: auto; }\r\n\r\ninput, textarea {\r\n  outline: none; }\r\n\r\nbody {\r\n  font-family: 'Microsoft Yahei', Tahoma, Helvetica, Arial, sans-serif;\r\n  font-size: 14px;\r\n  height: 100%;\r\n  overflow: hidden; }\r\n\r\n.sw-main-ui {\r\n  position: absolute;\r\n  left: 0;\r\n  top: 0;\r\n  width: 10rem;\r\n  height: 100%; }\r\n  .sw-main-ui .window1 {\r\n    top: 10px; }\r\n  .sw-main-ui .window2 {\r\n    top: 18vh; }\r\n  .sw-main-ui .window3 {\r\n    top: 35vh; }\r\n  .sw-main-ui .window4 {\r\n    top: 53vh; }\r\n  .sw-main-ui .window5 {\r\n    bottom: 5vh;\r\n    top: auto; }\r\n\r\n/*# sourceMappingURL=seewhat.css.map */\r\n", ""]);
+
+	// exports
+
+
+/***/ },
+/* 199 */,
+/* 200 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, '__esModule', {
+		value: true
+	});
+
+	var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+
+	var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; desc = parent = undefined; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var _react = __webpack_require__(5);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _publicJsx = __webpack_require__(189);
+
+	__webpack_require__(201);
+
+	var WindowApp = (function (_Component) {
+		_inherits(WindowApp, _Component);
+
+		function WindowApp(props) {
+			_classCallCheck(this, WindowApp);
+
+			_get(Object.getPrototypeOf(WindowApp.prototype), 'constructor', this).call(this, props);
+
+			this.state = {};
+		}
+
+		_createClass(WindowApp, [{
+			key: 'render',
+			value: function render() {
+				var style = {
+					backgroundSize: 'cover'
+				};
+				return _react2['default'].createElement(
+					'div',
+					{ className: 'window-main-ui active ' + this.props.className, style: style },
+					this.props.tag,
+					_react2['default'].createElement(
+						'div',
+						{ className: 'window-img' },
+						_react2['default'].createElement(
+							'div',
+							null,
+							_react2['default'].createElement('img', { src: this.props.img })
+						),
+						_react2['default'].createElement('div', { className: 'w-curtain' })
+					),
+					_react2['default'].createElement(
+						'div',
+						{ className: 'window-line' },
+						_react2['default'].createElement('img', { src: './assets/images/line.png' })
+					)
+				);
+			}
+		}, {
+			key: 'componentDidMount',
+			value: function componentDidMount() {}
+		}]);
+
+		return WindowApp;
+	})(_react.Component);
+
+	exports['default'] = (0, _publicJsx.FlyPublicComponent)(WindowApp);
+	module.exports = exports['default'];
+
+/***/ },
+/* 201 */
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+
+	// load the styles
+	var content = __webpack_require__(202);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(4)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../../node_modules/.0.23.1@css-loader/index.js!./window.css", function() {
+				var newContent = require("!!./../../node_modules/.0.23.1@css-loader/index.js!./window.css");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+/* 202 */
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(3)();
+	// imports
+
+
+	// module
+	exports.push([module.id, "html, body, div, p, ul, li, ol, dl, dt, dd, header, footer, video, h1, h2, h3, h4, canvas, section, figure {\r\n  padding: 0;\r\n  margin: 0; }\r\n\r\na {\r\n  text-decoration: none; }\r\n\r\nli {\r\n  list-style: none; }\r\n\r\nhtml, body {\r\n  height: 100%; }\r\n\r\nimg {\r\n  border: none;\r\n  vertical-align: top;\r\n  width: 100%;\r\n  height: auto; }\r\n\r\ninput, textarea {\r\n  outline: none; }\r\n\r\nbody {\r\n  font-family: 'Microsoft Yahei', Tahoma, Helvetica, Arial, sans-serif;\r\n  font-size: 14px;\r\n  height: 100%;\r\n  overflow: hidden; }\r\n\r\n.window-main-ui {\r\n  position: absolute;\r\n  top: 0;\r\n  width: 3.5rem;\r\n  border-radius: 1.75rem; }\r\n  .window-main-ui:nth-of-type(2n) {\r\n    right: .8rem; }\r\n  .window-main-ui:nth-of-type(2n+1) {\r\n    left: .8rem; }\r\n  .window-main-ui:before {\r\n    content: '';\r\n    position: absolute;\r\n    width: 100%;\r\n    height: 79%;\r\n    left: 0;\r\n    bottom: 0;\r\n    border-radius: 1.75rem;\r\n    box-shadow: 0 10px 20px #2763bb; }\r\n  .window-main-ui.active .window-img .w-curtain {\r\n    height: 0.7rem; }\r\n  .window-main-ui.active .window-img .window-line {\r\n    top: 72%; }\r\n  .window-main-ui .w-tag {\r\n    display: -webkit-box;\r\n    -webkit-box-align: center;\r\n    -webkit-box-pack: center;\r\n    -webkit-box-orient: horizontal;\r\n    -webkit-box-align: start; }\r\n    .window-main-ui .w-tag div {\r\n      position: relative;\r\n      margin: 0 3px;\r\n      color: #fff; }\r\n      .window-main-ui .w-tag div:nth-of-type(1) {\r\n        height: 1rem;\r\n        width: 1rem;\r\n        text-align: center;\r\n        line-height: .9rem; }\r\n      .window-main-ui .w-tag div:nth-of-type(2) {\r\n        margin-top: 8px;\r\n        font-size: 18px; }\r\n  .window-main-ui .window-img {\r\n    position: relative;\r\n    overflow: hidden;\r\n    border: 6px solid #fff;\r\n    box-sizing: border-box;\r\n    width: 3.5rem;\r\n    height: 3.5rem;\r\n    border-radius: 50%; }\r\n    .window-main-ui .window-img div {\r\n      z-index: 2; }\r\n    .window-main-ui .window-img .w-curtain {\r\n      width: 3.5rem;\r\n      height: 3.5rem;\r\n      background: #2a627b;\r\n      position: absolute;\r\n      left: 0;\r\n      top: 0;\r\n      z-index: 10;\r\n      z-index: 1;\r\n      -webkit-transition: 0.5s;\r\n      transition: 0.5s; }\r\n      .window-main-ui .window-img .w-curtain:before, .window-main-ui .window-img .w-curtain:after {\r\n        content: '';\r\n        position: absolute;\r\n        left: 0;\r\n        bottom: 0;\r\n        width: 100%;\r\n        height: 4px;\r\n        background: #c1cbd4; }\r\n      .window-main-ui .window-img .w-curtain:after {\r\n        background: #d3dfeb;\r\n        bottom: 3px; }\r\n  .window-main-ui .window-line {\r\n    width: 5px;\r\n    position: absolute;\r\n    top: 50%;\r\n    right: 2px;\r\n    -webkit-transition: 0.5s;\r\n    transition: 0.5s; }\r\n\r\n/*# sourceMappingURL=window.css.map */\r\n", ""]);
+
+	// exports
+
+
+/***/ },
+/* 203 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, '__esModule', {
+		value: true
+	});
+
+	var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+
+	var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; desc = parent = undefined; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var _react = __webpack_require__(5);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _publicJsx = __webpack_require__(189);
+
+	var _windowJsx = __webpack_require__(200);
+
+	var _windowJsx2 = _interopRequireDefault(_windowJsx);
+
+	__webpack_require__(204);
+
+	var SeeByApp = (function (_Component) {
+		_inherits(SeeByApp, _Component);
+
+		function SeeByApp(props) {
+			_classCallCheck(this, SeeByApp);
+
+			_get(Object.getPrototypeOf(SeeByApp.prototype), 'constructor', this).call(this, props);
+
+			this.state = {};
+		}
+
+		_createClass(SeeByApp, [{
+			key: 'render',
+			value: function render() {
+				var style = {
+					background: 'url(./assets/images/bg4.png) no-repeat center bottom',
+					backgroundSize: 'cover'
+				};
+
+				return _react2['default'].createElement(
+					'div',
+					{ className: 'sb-main-ui', style: style },
+					_react2['default'].createElement(
+						'div',
+						{ className: 'sb-ico sb-hp' },
+						_react2['default'].createElement('img', { src: './assets/images/hp.png' })
+					),
+					_react2['default'].createElement(
+						'div',
+						{ className: 'sb-ico sb-vr' },
+						_react2['default'].createElement('img', { src: './assets/images/vr.png' })
+					),
+					_react2['default'].createElement(
+						'div',
+						{ className: 'sb-ico sb-sp' },
+						_react2['default'].createElement('img', { src: './assets/images/sp.png' })
+					),
+					_react2['default'].createElement(
+						'div',
+						{ className: 'sb-ico sb-tp' },
+						_react2['default'].createElement('img', { src: './assets/images/tp.png' })
+					),
+					_react2['default'].createElement(
+						'div',
+						{ className: 'sb-ico sb-yp' },
+						_react2['default'].createElement('img', { src: './assets/images/yp.png' })
+					),
+					_react2['default'].createElement(
+						'div',
+						{ className: 'sb-ico sb-wz' },
+						_react2['default'].createElement('img', { src: './assets/images/wz.png' })
+					)
+				);
+			}
+		}, {
+			key: 'componentDidMount',
+			value: function componentDidMount() {}
+		}]);
+
+		return SeeByApp;
+	})(_react.Component);
+
+	exports['default'] = (0, _publicJsx.FlyPublicComponent)(SeeByApp);
+	module.exports = exports['default'];
+
+/***/ },
+/* 204 */
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+
+	// load the styles
+	var content = __webpack_require__(205);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(4)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../../node_modules/.0.23.1@css-loader/index.js!./seeby.css", function() {
+				var newContent = require("!!./../../node_modules/.0.23.1@css-loader/index.js!./seeby.css");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+/* 205 */
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(3)();
+	// imports
+
+
+	// module
+	exports.push([module.id, "html, body, div, p, ul, li, ol, dl, dt, dd, header, footer, video, h1, h2, h3, h4, canvas, section, figure {\r\n  padding: 0;\r\n  margin: 0; }\r\n\r\na {\r\n  text-decoration: none; }\r\n\r\nli {\r\n  list-style: none; }\r\n\r\nhtml, body {\r\n  height: 100%; }\r\n\r\nimg {\r\n  border: none;\r\n  vertical-align: top;\r\n  width: 100%;\r\n  height: auto; }\r\n\r\ninput, textarea {\r\n  outline: none; }\r\n\r\nbody {\r\n  font-family: 'Microsoft Yahei', Tahoma, Helvetica, Arial, sans-serif;\r\n  font-size: 14px;\r\n  height: 100%;\r\n  overflow: hidden; }\r\n\r\n.sb-main-ui {\r\n  width: 100%;\r\n  height: 100%;\r\n  position: absolute;\r\n  left: 0;\r\n  top: 0; }\r\n  .sb-main-ui .sb-ico {\r\n    width: 2rem;\r\n    position: absolute; }\r\n  .sb-main-ui .sb-hp {\r\n    left: 3.4rem;\r\n    top: .5rem; }\r\n  .sb-main-ui .sb-tp {\r\n    right: 0;\r\n    top: 5rem; }\r\n  .sb-main-ui .sb-vr {\r\n    left: 2rem;\r\n    top: 5rem; }\r\n  .sb-main-ui .sb-yp {\r\n    top: 8.5rem;\r\n    left: 3.5rem; }\r\n  .sb-main-ui .sb-sp {\r\n    top: 12.5rem;\r\n    left: 6rem; }\r\n  .sb-main-ui .sb-wz {\r\n    right: 0;\r\n    top: 10rem; }\r\n\r\n/*# sourceMappingURL=seeby.css.map */\r\n", ""]);
+
+	// exports
+
 
 /***/ }
 /******/ ]);

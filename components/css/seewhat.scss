@@ -1,0 +1,28 @@
+@import "../../assets/css/base.scss";
+.sw-main-ui{
+	@include pos(a);
+	left:0;
+	top:0;
+	width:10rem;
+	height:100%;
+
+	.window1{
+		top:10px;
+	}
+	.window2{
+		top:18vh;
+	}
+
+	.window3{
+		top:35vh;
+	}
+	
+	.window4{
+		top:53vh;
+	}
+
+	.window5{
+		bottom: 5vh;
+		top:auto;
+	}
+}

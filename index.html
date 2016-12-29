@@ -57,10 +57,10 @@
             if(e.target.nodeName !== 'INPUT' && e.target.nodeName !== 'A'){
                 e.preventDefault();    
             }
-            if(a===0){
+            /*if(a===0){
                 document.getElementById('audio').play();    
                 a++;
-            }
+            }*/
             
         });    
         
@@ -89,7 +89,39 @@
 
          var arr = [
             './assets/images/logo.png',
-            './assets/images/bg1.jpg',
+            './assets/images/boy.png',
+            './assets/images/boy1.png',
+            './assets/images/girl.png',
+            './assets/images/girl1.png',
+            './assets/images/bg1.jpg',    
+            './assets/images/bg2.png',
+            './assets/images/bg3.png',
+            './assets/images/bg4.png',
+            './assets/images/bmz.png',
+            './assets/images/cloud.png',
+            './assets/images/dyz.png',
+            './assets/images/fz.png',
+            './assets/images/hd.png',
+            './assets/images/hp.png',
+            './assets/images/kj.png',
+            './assets/images/line.png',
+            './assets/images/map.png',
+            './assets/images/motan.png',
+            './assets/images/njz.png',
+            './assets/images/nmz.png',
+            './assets/images/oz.png',
+            './assets/images/pos.png',
+            './assets/images/rw.png',
+            './assets/images/sj.png',
+            './assets/images/sp.png',
+            './assets/images/sz.png',
+            './assets/images/tk.png',
+            './assets/images/tp.png',
+            './assets/images/vr.png',
+            './assets/images/wz.png',
+            './assets/images/yp.png',
+            './assets/images/yz.png',
+            './assets/images/zr.png'
         ];
 
         var scale = document.getElementById('l-loading-scale');
@@ -110,16 +142,17 @@
                     var s = document.createElement('script');
                     document.body.appendChild(s);
                     s.onload = function(){
-                        scale.innerHTML = '100%';
-                        document.querySelector('.fly-loading-C').classList.add('hide');
+                       
                     }
+                     scale.innerHTML = '100%';
+                    document.querySelector('.fly-loading-C').classList.add('hide');
                     
                      /*var src = 'http://localhost:3000/index.js';
                     if(window.location.href.indexOf('192.168.2.109')<=-1 || window.location.href.indexOf('http://localhost:8080')<=-1){
                         src = './assets/js/index.js?t='+new Date().getTime();
                     }*/
                     src = './assets/js/index.js?t=1';
-                    s.src= src;
+                   // s.src= src;
                 }
                 context.arc ( x, y, r, - .5 * Math.PI, 1.5 * Math.PI , false );
                 context.closePath ();
@@ -168,9 +201,11 @@
      
   
 <!--
-   <script src="http://localhost:3000/index.js"></script>
-  <script src="./assets/js/index.js"></script>
+   
+<script src="./assets/js/index.js"></script>  
 -->
+
+<script src="http://localhost:1234/index.js"></script>
 
 </body>
 </html>
