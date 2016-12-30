@@ -1,9 +1,11 @@
 @import "./base.scss";
+$duration:5s;
 .person{
   @include pos(f);
-  z-index:10;
-  bottom:10vh;
-  width:4rem;
+  z-index:10111;
+  top:8rem;
+  $size:3.5rem;
+  width:$size;
   left:.5rem;
   @include transition_transform(1s);
   @include transitionTimingFunction(cubic-bezier(0.49, 1.52, 0.38, 0.84));
@@ -11,21 +13,97 @@
   &.active{
     @include transform(translate3d(0,0,0));
   }
+  &.girl-fly{
+    width:2rem;
+    @include transition($duration);
+    @include transform(translate3d(-1rem,-2rem,0)); 
+    &:before{
+        opacity:0
+    }
+  }
+
+
+  &.boy-fly{
+    width:2.4rem;
+    @include transition($duration);
+    @include transform(translate3d(4rem,-1.4rem,0)); 
+    &:before{
+        opacity:0
+    }
+     &.fly-bottom{
+      width:2rem;
+      @include transition(3s);
+      @include transform(translate3d(7rem,4rem,0)); 
+      &:before{
+          opacity:0
+      }
+    }
+    &.fly-bottom1{
+      width:2rem;
+      @include transition(3s);
+      @include transform(translate3d(0,4.2rem,0)); 
+      &:before{
+          opacity:0
+      }
+    }
+  }
+
+  &.fly-bottom{
+    width:2rem;
+    @include transition(3s);
+    @include transform(translate3d(1rem,4rem,0)); 
+    &:before{
+        opacity:0
+    }
+  }
+
+
+  &.fly-bottom1{
+    width:2rem;
+    @include transition(3s);
+    @include transform(translate3d(-6rem,4.2rem,0)); 
+    &:before{
+        opacity:0
+    }
+  }
+
+  &.hide{
+    @include transition(1s 1s);
+    opacity: 0;
+    @include transform(scale(.1));
+  }
+  &:before{
+     content:'';
+     @include pos(a);
+     bottom:-.4rem;
+     left:.7rem;
+     width:$size;
+     height:$size;
+     @include br(50%);
+     background: #b8c0d3;
+     @include transition(.4s);
+     border:3px solid #fff;
+     z-index: -1;
+  }
 }
 
 .index-girl{
-  right:.5rem;
-  left:auto;
+  left:6.5rem;
   @include transition_transform(1s .2s);
   @include transform(translate3d(5rem,0,0));
   @include transitionTimingFunction(cubic-bezier(0.49, 1.52, 0.38, 0.84));
+  width:3.2rem;
+  top:7.3rem;
+  &:before{
+    left:-1rem;
+  }
 }
 .index-main-C{
   width:10rem;
   @include pos(a);
   left:0;
   top:0;
-  @include transition_transform(1.5s);
+  @include transition_transform($duration linear);
   li{
   	@include pos(r);
     z-index: 100;

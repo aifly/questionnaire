@@ -64,6 +64,11 @@ input, textarea {
   transition: transform $v;
 }
 
+@mixin transitionDelay($v){
+  -webkit-transition-delay:$v;
+          transition-delay:$v;
+}
+
 @mixin transform_origin($v:center) {
   -webkit-transform-origin: $v;
   transform-origin: $v;

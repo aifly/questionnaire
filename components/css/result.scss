@@ -1,0 +1,159 @@
+@import '../../assets/css/base.scss';
+
+.r-main-ui{
+	@include pos(a);
+	left:0;
+	top:0;
+	width:10rem;
+	height:100%;
+	.r-title{
+		width:8rem;
+		@include pos(a);
+		left:1rem;
+		top:2.2rem;
+		span{
+			font-size: .64rem;
+			@include pos(a);
+			color:#db9e36;
+			@include transform(scale(0));
+			&.active{
+				@include transform(scale(1));
+			}
+			@include transition_transform(.5s);
+			@include transitionTimingFunction(cubic-bezier(0.49, 1.52, 0.38, 0.84));
+
+			text-align: center;
+			&:nth-of-type(1){
+				top:-.2rem;
+				@include transitionDelay(1.2s);
+				width:2.5rem;
+				left:4.2rem;
+			}
+			&:nth-of-type(2){
+				bottom:-.06rem;
+				width:1.7rem;
+				left:3rem;
+				@include transitionDelay(1.4s);
+			}
+			&:nth-of-type(3){
+				width:3.4rem;
+				@include transitionDelay(1.6s);
+				left:5.8rem;
+				bottom:-.06rem;
+			}
+		}
+	}
+	.r-tnk{
+		width:12rem;
+		left:-1rem;
+		@include pos(a);
+		bottom:1rem;
+		@include transition_transform(4s 3s);
+		@include transform(translate3d(0,8rem,0));
+		&.active{
+			@include transform(translate3d(0,0,0));
+		}
+
+	}
+	.r-result-content{
+		width:4rem;
+		@include pos(a);
+		top:5rem;
+		left:3rem;
+		z-index: 100;
+		color:#6a739c;
+		.wo{
+			left:0;
+			top:0;
+			width:2rem;
+		}
+		.r-text{
+			width:4.8rem;
+			font-size:.5rem;
+			text-align: center;
+			text-indent: 1em;
+			line-height: 25px;
+			margin-left: -.49rem;
+			span{
+				font-size:.6rem;
+				color:#2e76b9;
+			}
+		}
+	}
+	.r-sex{
+		img{width:.4rem;vertical-align: middle;}
+		margin: 15px 0;
+		width:5rem;
+		span{
+			margin:0 .12rem;
+			&:nth-of-type(1),&:nth-of-type(4),&:last-of-type{
+				color:#fff;
+			}
+			&:nth-of-type(3n+3){
+				color:#666;
+				font-weight: bold;
+			}
+		}
+		text-align: center;
+		margin-left: -.5rem;
+	}
+	.r-sendfriend{
+		width:7rem;
+		color:#2e76b9;
+		margin-left: -1rem;
+	}
+	.r-invite{
+		@include transition(.06s);
+		&.active{
+			@include transform(translate3d(0,4px,0));
+			&:after{
+				content:'';
+				@include pos(a);
+				left:0;
+				top:0;
+				z-index: -1;
+				width:100%;
+				height:100%;
+				box-shadow:0 0 50px rgba(252,225,231,1);
+			}
+			&:before{
+				top:0;
+			}
+		}
+		z-index: 10;
+		text-align: center;
+		padding:6px 10px;
+		background: #fff;
+		color:#525d8c;
+		border:2px solid #525d8c;
+		@include br(20px);
+		margin-top: .4rem;
+		@include pos(r);
+		@include transform3d();
+		&:before{
+			content:'';
+			z-index: -1;
+			@include pos(a);
+			width:104%;
+			height:100%;
+			@include br(26px);
+		  	left:-2%;
+		  	top:6px;
+		 	background:#9ab9da;
+		 	@include transform(translate3d(0,0,-1px))
+		}
+		
+
+	}
+
+	.r-mask{
+		@include pos(a);
+		left:0;
+		top:0;
+		width:100%;
+		height:100%;
+		
+		z-index: -1;
+
+	}
+}

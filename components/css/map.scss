@@ -39,13 +39,17 @@
 	.map-z{
 		width:2rem;
 		z-index: 102;
+		&.hide{
+			@include transition(.5s);
+			opacity:0;
+		}
 	}
 	.map-oz{
-			right: 1.5rem;
+			left:6.3rem;
 			top:.7rem;
 	}
 	.map-fz{
-		right:.8rem;
+		left:7rem;
 		top:4rem;
 	}
 	.map-dyz{
@@ -65,7 +69,7 @@
 		left: 1.8rem;
 	}
 	.map-hd{
-		 bottom:1rem;
+		 top:13.4rem;
 		 left: 5rem;
 	}
 }

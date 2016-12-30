@@ -6,7 +6,9 @@ class WindowApp extends Component {
 	constructor(props) {
 	  super(props);
 	
-	  this.state = {};
+	  this.state = {
+	  	className:''
+	  };
 	
 	}
 	render() {
@@ -14,22 +16,25 @@ class WindowApp extends Component {
 				backgroundSize:'cover'
 		};
 		return (
-			<div className={'window-main-ui active '+ this.props.className} style={style}>
-					{this.props.tag}
-					<div className='window-img'>
-							<div>
-								<img src={this.props.img} />
-							</div>
-							<div className='w-curtain'></div>
+			<div  className={ ' window-main-ui  '+ this.props.className} style={style}>
+				{this.props.tag}
+				<div className='window-img'>
+					<div>
+						<img src={this.props.img} />
 					</div>
-					<div className='window-line'>
-							<img src='./assets/images/line.png'/> 
-					</div>
+					<div className='w-curtain'></div>
+				</div>
+				<div className='window-line'>
+					<img src='./assets/images/line.png'/> 
+				</div>
 			</div>
 		);
 	}
+
+	 
+
 	componentDidMount() {
-		
+
 	}
 }
 

@@ -9,6 +9,10 @@
 	.sb-ico{
 		width:2rem;
 		@include pos(a);
+		&.hide{
+			@include transition(.5s);
+			opacity:0;
+		}
 	}
 	.sb-hp{
 		
@@ -17,7 +21,7 @@
 	}
 	.sb-tp{
 		
-		right:0;
+		left:8rem;
 		top:5rem;
 	}
 	.sb-vr{
@@ -35,7 +39,7 @@
 		left: 6rem;
 	}
 	.sb-wz{
-		right: 0;
+		left:8rem;
 		top:10rem;
 	}
 }

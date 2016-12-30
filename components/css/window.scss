@@ -5,7 +5,7 @@
 	$size:3.5rem;
 	top:0;
 	&:nth-of-type(2n){
-		right:.8rem;
+		left:5.7rem;
 	}
 	&:nth-of-type(2n+1){
 		left:.8rem;
@@ -22,14 +22,19 @@
 		@include br($size/2);
 		box-shadow:0 10px 20px rgba(39,99,187,1);
 	}
+	&.hide{
+		@include transition(.5s);
+		opacity:0;
+	}
 	&.active{
 		.window-img{
-				.w-curtain{
-					 height: $size / 5;
-				}
-				.window-line{
-					 top:72%;
-				}
+			.w-curtain{
+				 height: $size / 5;
+				 @include transform(translate3d(0,0,-1px));
+			}
+		}
+		.window-line{
+			 top:3rem;
 		}
 	}
 	.w-tag{
@@ -60,6 +65,7 @@
 		box-sizing:border-box;
 		width:$size;
 		height:$size;
+		@include transform3d();
 
 		div{
 			z-index: 2;
@@ -72,9 +78,10 @@
 			 height:$size;
 			 background:#2a627b;
 			 @include pos(a);
+			 @include transform(translate3d(0,0,-1px));
 			 left:0;
 			 top:0;
-			 z-index:10;
+			 z-index:0;
 			 &:before,&:after{
 			 	content:'';
 			 	@include pos(a);
@@ -88,17 +95,13 @@
 			 	background:#d3dfeb;
 			 	bottom:3px;
 			 }
-			 z-index: 1;
-			 @include transition(.5s);
-
-
-			 
+			 @include transition(1s);
 		}
 	}
 	.window-line{
 		width:5px;
 		@include pos(a);
-		top:50%;
+		top:2.2rem;
 		right:2px;
 		@include transition(.5s);
 
