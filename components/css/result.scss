@@ -47,7 +47,7 @@
 		width:12rem;
 		left:-1rem;
 		@include pos(a);
-		bottom:1rem;
+		bottom:.3rem;
 		@include transition_transform(4s 3s);
 		@include transform(translate3d(0,8rem,0));
 		&.active{

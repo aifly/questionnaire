@@ -39,10 +39,40 @@
 		color:#fff;
 		top:60vh;
 		@include transition(.5s);
+		&:before,&:after{
+			content:"";
+			@include pos(a);
+			width:20px;
+			height:2px;
+			background: #8fa7c9;
+			left:50%;
+			margin-left: -10px;
+			top:110%;
+		}
+		&:after{
+			width: 0;
+		    height: 0;
+		    border-left: 10px solid transparent;
+		    border-right: 10px solid transparent;
+		    border-top: 7px solid #8fa7c9;
+		    background:transparent;
+		    top:130%;
+		}
 		&.active{
 			opacity:1;
+			
 		}
 	}
 
 }
 	
+@-webkit-keyframes info{
+	from{
+		@include transform(translate3d(0,0,0));
+		opacity:0;
+	}
+	to{
+		@include transform(translate3d(0,10px,0));
+		opacity:1;
+	}
+}

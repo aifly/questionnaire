@@ -18,7 +18,7 @@ class MapApp extends Component {
 	}
 	render() {
 		let style = {
-				background:'url(./assets/images/bg2.png) no-repeat center',
+				background:'url(./assets/images/bg2.png) no-repeat center top',
 				backgroundSize:'cover'
 		};
 		let img = <div className='info'>
@@ -26,6 +26,7 @@ class MapApp extends Component {
 		</div>
 		return (
 			<div className='map-main-ui' style={style} onTouchTap={this.closeMask.bind(this)}>
+
 				<div className='map-cloud'><img src='./assets/images/cloud.png' /></div>
 				<div className='map-map'><img className={this.viewWidth / this.height > 320/568?'':'active'} src='./assets/images/map.png' /></div>
 				<div className='map-tk map-z' data-text='太空'><img src='./assets/images/tk.png'/></div>
@@ -38,6 +39,7 @@ class MapApp extends Component {
 				<div  data-text='南极洲' className=' map-z map-njz'><img src='./assets/images/njz.png'/></div>
 				<div  data-text='海底' className=' map-z map-hd'><img src='./assets/images/hd.png'/></div>
 				<Mask img={img} className={this.state.visiable?'show':''}></Mask>
+				<div className='news'><img src='./assets/images/news.png'/></div>
 			</div>
 		);
 	}

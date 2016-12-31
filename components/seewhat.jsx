@@ -20,7 +20,7 @@ class SeeWhatApp extends Component {
 	}
 	render() {
 		let style = {
-				background:'url(./assets/images/bg3.png) no-repeat center center',
+				background:'url(./assets/images/bg3.png) no-repeat center top',
 				backgroundSize:'cover'
 		};
 		let icoStyle=  {
@@ -87,6 +87,7 @@ class SeeWhatApp extends Component {
 				<WindowApp {...props4} {...this.props}></WindowApp>
 				<WindowApp {...props5} {...this.props}></WindowApp>
 				<Mask img={img} className={this.state.visiable?'show':''}></Mask>
+				<div className='news'><img src='./assets/images/news.png'/></div>
 			</div>
 		);
 	}

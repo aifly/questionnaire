@@ -34,6 +34,7 @@ class SeeByApp extends Component {
 				<div className='sb-ico sb-yp' data-text='音频'><img src='./assets/images/yp.png'/></div>
 				<div className='sb-ico sb-wz' data-text='文字'><img src='./assets/images/wz.png'/></div>
 				<Mask img={img} className={this.state.visiable?'show':''}></Mask>
+				<div className='news'><img src='./assets/images/news.png'/></div>
 			</div>
 		);
 	}
@@ -41,7 +42,7 @@ class SeeByApp extends Component {
 	closeMask(e){
 
 		let {obserable}  = this.props;
-		if(this.state.visiable === null){
+		if(this.state.visiable){
 			this.setState({
 				visiable:false
 			});
